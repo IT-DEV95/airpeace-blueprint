@@ -1,4 +1,7 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight01Icon, PercentIcon } from "@hugeicons/core-free-icons";
@@ -83,7 +86,7 @@ export const PromotionsSection = () => {
             </motion.h2>
           </div>
           <Link
-            to="/deals"
+            href="/destinations"
             className="hidden md:flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors"
           >
             View All Deals
@@ -103,16 +106,18 @@ export const PromotionsSection = () => {
             <motion.div
               key={promo.id}
               variants={itemVariants}
-              className="group bg-card rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300"
+              className="group bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/20 transition-all duration-300"
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
-                <img
+                <Image
                   src={promo.image}
                   alt={promo.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className="absolute top-4 left-4 bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-semibold">
+                <div className="absolute top-4 left-4 bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-semibold z-10">
                   {promo.discount}
                 </div>
               </div>
@@ -144,7 +149,7 @@ export const PromotionsSection = () => {
                     size="sm"
                     className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                   >
-                    <Link to="/book">Book Now</Link>
+                    <Link href="/book">Book Now</Link>
                   </Button>
                 </div>
               </div>
@@ -155,7 +160,7 @@ export const PromotionsSection = () => {
         {/* Mobile View All Link */}
         <div className="mt-8 text-center md:hidden">
           <Link
-            to="/deals"
+            href="/destinations"
             className="inline-flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors"
           >
             View All Deals

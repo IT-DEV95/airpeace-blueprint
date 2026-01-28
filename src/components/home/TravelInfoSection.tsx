@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -29,6 +31,44 @@ const infoCards = [
     description:
       "Stay updated on visa, health, and entry requirements for your destination.",
     link: "/travel-info/requirements",
+  },
+];
+
+const servicesCards = [
+  {
+    title: "Ride Services",
+    description:
+      "Travel with ease by booking discounted airport pick-up and drop-off rides with our trusted partners.",
+    cta: "Learn more",
+    href: "/services/ride-services",
+  },
+  {
+    title: "Booking a Hotel",
+    description:
+      "Access exclusive hotel deals when you book your accommodation through our partner network at your destination.",
+    cta: "View hotel offers",
+    href: "/services/hotels",
+  },
+  {
+    title: "Travel Insurance",
+    description:
+      "Enhance your trip with comprehensive travel insurance and enjoy peace of mind from take-off to landing.",
+    cta: "Add insurance",
+    href: "/services/travel-insurance",
+  },
+  {
+    title: "Pay Small Small",
+    description:
+      "Spread your ticket payment over convenient instalments while enjoying special early-bird fares.",
+    cta: "See payment plans",
+    href: "/services/pay-small-small",
+  },
+  {
+    title: "Buggy Services",
+    description:
+      "Skip the long walks at the airport with our buggy service for a smooth, quick ride to your gate.",
+    cta: "Book buggy",
+    href: "/services/buggy",
   },
 ];
 
@@ -83,8 +123,8 @@ export const TravelInfoSection = () => {
           {infoCards.map((card) => (
             <motion.div key={card.title} variants={itemVariants}>
               <Link
-                to={card.link}
-                className="group block p-8 bg-card rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+                href={card.link}
+                className="group block p-8 bg-card rounded-2xl border border-border hover:border-primary/30 transition-all duration-300"
               >
                 <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300">
                   <HugeiconsIcon
@@ -109,6 +149,47 @@ export const TravelInfoSection = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Additional Services */}
+        <div className="mt-16">
+          <h3 className="text-xl md:text-2xl font-display font-semibold text-foreground mb-4">
+            Get more from your trip
+          </h3>
+          <p className="text-muted-foreground mb-6 max-w-2xl">
+            Enjoy extra benefits when you book with Air Peace, from airport transfers to flexible payment options.
+          </p>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {servicesCards.map((service) => (
+              <motion.div key={service.title} variants={itemVariants}>
+                <Link
+                  href={service.href}
+                  className="block h-full bg-card rounded-2xl border border-border hover:border-primary/30 transition-all duration-300 p-6"
+                >
+                  <h4 className="text-lg font-semibold text-foreground mb-2">
+                    {service.title}
+                  </h4>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {service.description}
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm text-primary font-medium">
+                    {service.cta}
+                    <HugeiconsIcon
+                      icon={ArrowRight01Icon}
+                      size={16}
+                      className="transform group-hover:translate-x-1 transition-transform"
+                    />
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

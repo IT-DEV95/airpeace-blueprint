@@ -1,4 +1,7 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight01Icon, AirplaneTakeOff01Icon } from "@hugeicons/core-free-icons";
@@ -116,7 +119,7 @@ export const DestinationsSection = () => {
             </motion.h2>
           </div>
           <Link
-            to="/destinations"
+            href="/destinations"
             className="hidden md:flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors"
           >
             View All Destinations
@@ -136,16 +139,18 @@ export const DestinationsSection = () => {
             <motion.div
               key={destination.id}
               variants={itemVariants}
-              className={`destination-card ${
+              className={`group destination-card border border-border hover:border-primary/20 transition-all duration-300 ${
                 destination.featured && index === 0
                   ? "lg:col-span-2 lg:row-span-2 min-h-[400px]"
                   : "min-h-[280px]"
               }`}
             >
-              <img
+              <Image
                 src={destination.image}
                 alt={`${destination.city}, ${destination.country}`}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               
               {/* Content Overlay */}
@@ -177,7 +182,7 @@ export const DestinationsSection = () => {
                       size="sm"
                       className="bg-accent text-accent-foreground hover:bg-accent/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     >
-                      <Link to={`/destinations/${destination.city.toLowerCase()}`}>
+                      <Link href={`/destinations/${destination.city.toLowerCase()}`}>
                         Book Now
                       </Link>
                     </Button>
@@ -191,7 +196,7 @@ export const DestinationsSection = () => {
         {/* Mobile View All Link */}
         <div className="mt-8 text-center md:hidden">
           <Link
-            to="/destinations"
+            href="/destinations"
             className="inline-flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors"
           >
             View All Destinations

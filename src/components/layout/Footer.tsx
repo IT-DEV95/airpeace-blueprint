@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  AirplaneTakeOff01Icon,
   Facebook02Icon,
   InstagramIcon,
   NewTwitterIcon,
@@ -11,6 +11,8 @@ import {
   Call02Icon,
   Mail01Icon,
 } from "@hugeicons/core-free-icons";
+
+import logo from "@/assets/logo.png";
 
 const footerLinks = {
   company: [
@@ -66,14 +68,14 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-6">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
-                <HugeiconsIcon
-                  icon={AirplaneTakeOff01Icon}
-                  size={28}
-                  className="text-accent-foreground"
-                />
-              </div>
+            <Link href="/" className="flex items-center gap-3 mb-6">
+              <Image
+                src={logo}
+                alt="Air Peace"
+                height={40}
+                width={120}
+                className="h-10 w-auto object-contain bg-white rounded-md px-2 py-1"
+              />
               <div>
                 <span className="text-2xl font-display font-bold">Air Peace</span>
                 <span className="block text-sm opacity-80">
@@ -136,7 +138,7 @@ export const Footer = () => {
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
                   <Link
-                    to={link.href}
+                    href={link.href}
                     className="text-sm opacity-80 hover:opacity-100 hover:text-accent transition-colors"
                   >
                     {link.label}
@@ -152,7 +154,7 @@ export const Footer = () => {
               {footerLinks.travel.map((link) => (
                 <li key={link.href}>
                   <Link
-                    to={link.href}
+                    href={link.href}
                     className="text-sm opacity-80 hover:opacity-100 hover:text-accent transition-colors"
                   >
                     {link.label}
@@ -168,7 +170,7 @@ export const Footer = () => {
               {footerLinks.services.map((link) => (
                 <li key={link.href}>
                   <Link
-                    to={link.href}
+                    href={link.href}
                     className="text-sm opacity-80 hover:opacity-100 hover:text-accent transition-colors"
                   >
                     {link.label}
@@ -181,7 +183,7 @@ export const Footer = () => {
               {footerLinks.support.map((link) => (
                 <li key={link.href}>
                   <Link
-                    to={link.href}
+                    href={link.href}
                     className="text-sm opacity-80 hover:opacity-100 hover:text-accent transition-colors"
                   >
                     {link.label}
@@ -197,7 +199,7 @@ export const Footer = () => {
               {footerLinks.legal.map((link) => (
                 <li key={link.href}>
                   <Link
-                    to={link.href}
+                    href={link.href}
                     className="text-sm opacity-80 hover:opacity-100 hover:text-accent transition-colors"
                   >
                     {link.label}
@@ -217,19 +219,19 @@ export const Footer = () => {
           </p>
           <div className="flex items-center gap-6">
             <Link
-              to="/sitemap"
+              href="/travel-info"
               className="text-sm opacity-60 hover:opacity-100 transition-opacity"
             >
               Sitemap
             </Link>
             <Link
-              to="/legal/privacy"
+              href="/travel-info"
               className="text-sm opacity-60 hover:opacity-100 transition-opacity"
             >
               Privacy
             </Link>
             <Link
-              to="/legal/terms"
+              href="/travel-info"
               className="text-sm opacity-60 hover:opacity-100 transition-opacity"
             >
               Terms

@@ -1,5 +1,7 @@
+ 'use client';
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -37,7 +39,7 @@ interface BookingWidgetProps {
 }
 
 export const BookingWidget = ({ variant = "hero" }: BookingWidgetProps) => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [tripType, setTripType] = useState("round-trip");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -47,9 +49,7 @@ export const BookingWidget = ({ variant = "hero" }: BookingWidgetProps) => {
   const [cabinClass, setCabinClass] = useState("economy");
 
   const handleSearch = () => {
-    navigate("/book", {
-      state: { from, to, departDate, returnDate, passengers, cabinClass, tripType },
-    });
+    router.push("/book");
   };
 
   const swapLocations = () => {
@@ -94,7 +94,7 @@ export const BookingWidget = ({ variant = "hero" }: BookingWidgetProps) => {
             <HugeiconsIcon
               icon={AirplaneTakeOff01Icon}
               size={20}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground z-10"
             />
             <Select value={from} onValueChange={setFrom}>
               <SelectTrigger className="pl-10 h-12 bg-card">
@@ -134,7 +134,7 @@ export const BookingWidget = ({ variant = "hero" }: BookingWidgetProps) => {
             <HugeiconsIcon
               icon={AirplaneLanding01Icon}
               size={20}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground z-10"
             />
             <Select value={to} onValueChange={setTo}>
               <SelectTrigger className="pl-10 h-12 bg-card">
@@ -155,7 +155,7 @@ export const BookingWidget = ({ variant = "hero" }: BookingWidgetProps) => {
         </div>
 
         {/* Depart Date */}
-        <div className="lg:col-span-2">
+        <div className="md:col-span-1 lg:col-span-2">
           <label className="block text-sm font-medium text-foreground mb-2">
             Depart
           </label>
@@ -163,21 +163,22 @@ export const BookingWidget = ({ variant = "hero" }: BookingWidgetProps) => {
             <HugeiconsIcon
               icon={Calendar03Icon}
               size={20}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none z-10"
             />
             <input
               type="date"
               value={departDate}
               onChange={(e) => setDepartDate(e.target.value)}
-              className="input-airline w-full h-12 pl-10 bg-card"
+              className="input-airline w-full h-12 pl-10 pr-3 bg-card text-foreground"
               min={new Date().toISOString().split("T")[0]}
+              style={{ WebkitAppearance: 'none' }}
             />
           </div>
         </div>
 
         {/* Return Date */}
         {tripType === "round-trip" && (
-          <div className="lg:col-span-2">
+          <div className="md:col-span-1 lg:col-span-2">
             <label className="block text-sm font-medium text-foreground mb-2">
               Return
             </label>
@@ -185,22 +186,27 @@ export const BookingWidget = ({ variant = "hero" }: BookingWidgetProps) => {
               <HugeiconsIcon
                 icon={Calendar03Icon}
                 size={20}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none z-10"
               />
               <input
                 type="date"
                 value={returnDate}
                 onChange={(e) => setReturnDate(e.target.value)}
-                className="input-airline w-full h-12 pl-10 bg-card"
+                className="input-airline w-full h-12 pl-10 pr-3 bg-card text-foreground"
                 min={departDate || new Date().toISOString().split("T")[0]}
+                style={{ WebkitAppearance: 'none' }}
               />
             </div>
           </div>
         )}
 
         {/* Passengers & Class Row (on smaller screen) or inline */}
-        <div className={cn(tripType === "round-trip" ? "lg:col-span-12 lg:mt-4" : "lg:col-span-3")}>
-          <div className="grid grid-cols-2 gap-4">
+        <div className={cn(
+          tripType === "round-trip" 
+            ? "md:col-span-2 lg:col-span-12 lg:mt-4" 
+            : "md:col-span-1 lg:col-span-3"
+        )}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
                 Passengers
@@ -209,7 +215,7 @@ export const BookingWidget = ({ variant = "hero" }: BookingWidgetProps) => {
                 <HugeiconsIcon
                   icon={UserMultiple02Icon}
                   size={20}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground z-10"
                 />
                 <Select value={passengers} onValueChange={setPassengers}>
                   <SelectTrigger className="pl-10 h-12 bg-card">

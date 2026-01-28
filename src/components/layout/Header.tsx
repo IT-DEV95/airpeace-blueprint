@@ -1,5 +1,8 @@
+"use client";
+
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -17,6 +20,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/logo.png";
+import Image from "next/image";
 
 const navItems = [
   { label: "Book Flight", href: "/book" },
@@ -35,9 +40,9 @@ const utilityItems = [
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
-  const isActive = (href: string) => location.pathname === href;
+  const isActive = (href: string) => pathname === href;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
@@ -48,18 +53,24 @@ export const Header = () => {
             {utilityItems.map((item) => (
               <Link
                 key={item.href}
-                to={item.href}
-                className="hover:text-accent transition-colors"
+                href={item.href}
+                className="hover:text-accent transition-colors uppercase tracking-[0.18em] text-xs font-normal"
               >
                 {item.label}
               </Link>
             ))}
           </div>
           <div className="flex items-center gap-4 ml-auto">
-            <Link to="/contact" className="hover:text-accent transition-colors">
+            <Link
+              href="/support"
+              className="hover:text-accent transition-colors uppercase tracking-[0.18em] text-xs font-extralight"
+            >
               Contact
             </Link>
-            <Link to="/login" className="flex items-center gap-2 hover:text-accent transition-colors">
+            <Link
+              href="/manage-booking"
+              className="flex items-center gap-2 hover:text-accent transition-colors uppercase tracking-[0.18em] text-xs font-extralight"
+            >
               <HugeiconsIcon icon={UserIcon} size={16} />
               <span>Login / My Trips</span>
             </Link>
@@ -71,22 +82,15 @@ export const Header = () => {
       <nav className="section-container">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <HugeiconsIcon
-                icon={AirplaneTakeOff01Icon}
-                size={24}
-                className="text-primary-foreground"
-              />
-            </div>
-            <div>
-              <span className="text-xl font-display font-bold text-primary">
-                Air Peace
-              </span>
-              <span className="hidden sm:block text-xs text-muted-foreground">
-                Nigeria's Largest Airline
-              </span>
-            </div>
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src={logo}
+              alt="Air Peace"
+              height={100}
+              width={200}
+              className="h-[100px] w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -94,9 +98,9 @@ export const Header = () => {
             {navItems.map((item) => (
               <Link
                 key={item.href}
-                to={item.href}
+                href={item.href}
                 className={cn(
-                  "nav-link text-sm font-medium",
+                  "nav-link text-xs font-normal uppercase tracking-[0.2em]",
                   isActive(item.href) && "nav-link-active"
                 )}
               >
@@ -113,7 +117,7 @@ export const Header = () => {
               className="hidden sm:flex bg-accent text-accent-foreground hover:bg-accent/90"
               asChild
             >
-              <Link to="/book">
+              <Link href="/book">
                 <HugeiconsIcon icon={Search01Icon} size={16} className="mr-2" />
                 Book Now
               </Link>
@@ -147,9 +151,9 @@ export const Header = () => {
               {navItems.map((item) => (
                 <Link
                   key={item.href}
-                  to={item.href}
+                  href={item.href}
                   className={cn(
-                    "block py-3 px-4 rounded-lg text-foreground hover:bg-muted transition-colors",
+                  "block py-3 px-4 rounded-lg text-foreground hover:bg-muted transition-colors uppercase tracking-[0.16em] text-xs font-normal",
                     isActive(item.href) && "bg-primary/10 text-primary"
                   )}
                   onClick={() => setMobileMenuOpen(false)}
@@ -161,8 +165,8 @@ export const Header = () => {
                 {utilityItems.map((item) => (
                   <Link
                     key={item.href}
-                    to={item.href}
-                    className="block py-2 px-4 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    href={item.href}
+                    className="block py-2 px-4 text-xs uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground transition-colors font-normal"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.label}
@@ -173,7 +177,7 @@ export const Header = () => {
                 className="w-full mt-4 bg-accent text-accent-foreground hover:bg-accent/90"
                 asChild
               >
-                <Link to="/book" onClick={() => setMobileMenuOpen(false)}>
+                <Link href="/book" onClick={() => setMobileMenuOpen(false)}>
                   Book a Flight
                 </Link>
               </Button>

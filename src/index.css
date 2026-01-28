@@ -1,15 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@200;300;400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Air Peace Design System - Premium Airline Aesthetic */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
-
 @layer base {
   :root {
-    /* Core Brand Colors - Royal Blue & Gold */
-    --background: 210 25% 98%;
+    /* Core Brand Colors - Royal Blue & Red */
+    --background: 0 0% 100%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -30,9 +30,9 @@
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
-    /* Accent - Premium Gold */
-    --accent: 43 96% 56%;
-    --accent-foreground: 222 47% 11%;
+    /* Accent - Red */
+    --accent: 0 84% 50%;
+    --accent-foreground: 0 0% 100%;
 
     /* Success - Green for confirmations */
     --success: 142 76% 36%;
@@ -46,15 +46,16 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
+    /* Borders - subtle light sky blue */
+    --border: 210 100% 94%;
+    --input: 210 100% 94%;
     --ring: 217 89% 28%;
 
     --radius: 0.75rem;
 
     /* Custom Airline Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(217 89% 28%) 0%, hsl(217 89% 18%) 100%);
-    --gradient-gold: linear-gradient(135deg, hsl(43 96% 56%) 0%, hsl(38 92% 50%) 100%);
+    --gradient-red: linear-gradient(135deg, hsl(0 84% 50%) 0%, hsl(0 84% 45%) 100%);
     --gradient-sky: linear-gradient(180deg, hsl(210 100% 96%) 0%, hsl(210 100% 100%) 100%);
     --gradient-overlay: linear-gradient(180deg, hsla(217 89% 18% / 0.7) 0%, hsla(217 89% 28% / 0.4) 100%);
 
@@ -95,8 +96,8 @@
     --muted: 217 32% 17%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 43 96% 56%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 0 84% 50%;
+    --accent-foreground: 0 0% 100%;
 
     --success: 142 76% 46%;
     --success-foreground: 0 0% 100%;
@@ -107,8 +108,9 @@
     --destructive: 0 62% 30%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 32% 17%;
-    --input: 217 32% 17%;
+    /* Borders - subtle light sky blue (dark mode tuned) */
+    --border: 217 32% 24%;
+    --input: 217 32% 24%;
     --ring: 217 89% 55%;
 
     --sidebar-background: 222 47% 8%;
@@ -145,7 +147,7 @@
   .btn-hero {
     @apply bg-accent text-accent-foreground font-semibold px-8 py-4 rounded-lg;
     @apply hover:brightness-110 transition-all duration-300;
-    @apply shadow-lg hover:shadow-xl hover:-translate-y-0.5;
+    @apply hover:-translate-y-0.5;
   }
 
   .btn-hero-outline {
@@ -155,18 +157,20 @@
 
   /* Booking Widget */
   .booking-widget {
-    @apply bg-card rounded-2xl p-6 md:p-8;
-    box-shadow: var(--shadow-booking);
+    @apply bg-card rounded-2xl p-4 sm:p-6 md:p-8 border border-border;
+    @apply w-full;
+    @apply max-w-full;
+    box-sizing: border-box;
   }
 
   /* Card Hover Effect */
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply transition-all duration-300 hover:-translate-y-1;
   }
 
   /* Destination Card */
   .destination-card {
-    @apply relative overflow-hidden rounded-xl group cursor-pointer;
+    @apply relative overflow-hidden rounded-xl cursor-pointer;
   }
 
   .destination-card::after {
@@ -207,6 +211,26 @@
     @apply border-2 border-border rounded-lg px-4 py-3;
     @apply focus:border-primary focus:ring-2 focus:ring-primary/20;
     @apply transition-all duration-200 outline-none;
+    @apply w-full;
+    @apply text-sm;
+    @apply appearance-none;
+  }
+  
+  /* Date input specific styling */
+  input[type="date"].input-airline {
+    @apply pr-4;
+    min-width: 0;
+  }
+  
+  input[type="date"].input-airline::-webkit-calendar-picker-indicator {
+    @apply opacity-0 absolute right-2 cursor-pointer;
+    width: 20px;
+    height: 20px;
+  }
+  
+  input[type="date"].input-airline::-webkit-inner-spin-button,
+  input[type="date"].input-airline::-webkit-outer-spin-button {
+    @apply appearance-none;
   }
 
   /* Step Indicator */
@@ -222,14 +246,14 @@
   /* Flight Card */
   .flight-card {
     @apply bg-card border border-border rounded-xl p-6;
-    @apply hover:border-primary/30 hover:shadow-lg transition-all duration-300;
+    @apply hover:border-primary/30 transition-all duration-300;
   }
 }
 
 @layer utilities {
-  .text-gradient-gold {
+  .text-gradient-red {
     @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-gold);
+    background-image: var(--gradient-red);
   }
 
   .bg-gradient-hero {

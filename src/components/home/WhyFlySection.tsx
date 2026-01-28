@@ -1,3 +1,6 @@
+ 'use client';
+
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -6,8 +9,8 @@ import {
   Globe02Icon,
   Time01Icon,
   Award02Icon,
-  HeartCheckIcon,
 } from "@hugeicons/core-free-icons";
+import flag from "@/assets/flag.png";
 
 const features = [
   {
@@ -41,7 +44,7 @@ const features = [
       "Recognized for excellence in service, safety, and customer satisfaction.",
   },
   {
-    icon: HeartCheckIcon,
+    icon: null,
     title: "Nigerian Pride",
     description:
       "Proudly Nigerian, serving our nation and connecting Africa to the world.",
@@ -110,14 +113,23 @@ export const WhyFlySection = () => {
             <motion.div
               key={feature.title}
               variants={itemVariants}
-              className="group p-6 bg-card rounded-2xl border border-border hover:border-primary/20 hover:shadow-lg transition-all duration-300"
+              className="group p-6 bg-card rounded-2xl border border-border hover:border-primary/20 transition-all duration-300"
             >
-              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                <HugeiconsIcon
-                  icon={feature.icon}
-                  size={28}
-                  className="text-primary group-hover:text-primary-foreground transition-colors duration-300"
-                />
+              <div className="relative w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 overflow-hidden">
+                {feature.title === "Nigerian Pride" ? (
+                  <Image
+                    src={flag}
+                    alt="Nigerian flag"
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <HugeiconsIcon
+                    icon={feature.icon}
+                    size={28}
+                    className="text-primary group-hover:text-primary-foreground transition-colors duration-300"
+                  />
+                )}
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-2">
                 {feature.title}

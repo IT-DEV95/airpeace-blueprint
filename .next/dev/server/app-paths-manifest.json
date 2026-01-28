@@ -1,0 +1,10 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/about/page": "app/about/page.js",
+  "/book/page": "app/book/page.js",
+  "/destinations/page": "app/destinations/page.js",
+  "/manage-booking/page": "app/manage-booking/page.js",
+  "/page": "app/page.js",
+  "/services/page": "app/services/page.js",
+  "/travel-info/page": "app/travel-info/page.js"
+}

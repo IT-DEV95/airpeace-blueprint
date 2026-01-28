@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/admin/Desktop/air-peace-blueprint/src/app/not-found.tsx"],"sourcesContent":["import Link from \"next/link\";\n\nexport default function NotFound() {\n  return (\n    <div className=\"flex min-h-screen items-center justify-center bg-muted\">\n      <div className=\"text-center\">\n        <h1 className=\"mb-4 text-4xl font-bold\">404</h1>\n        <p className=\"mb-4 text-xl text-muted-foreground\">Oops! Page not found</p>\n        <Link href=\"/\" className=\"text-primary underline hover:text-primary/90\">\n          Return to Home\n        </Link>\n      </div>\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,sRAAC;QAAI,WAAU;kBACb,cAAA,sRAAC;YAAI,WAAU;;8BACb,sRAAC;oBAAG,WAAU;8BAA0B;;;;;;8BACxC,sRAAC;oBAAE,WAAU;8BAAqC;;;;;;8BAClD,sRAAC,kOAAI;oBAAC,MAAK;oBAAI,WAAU;8BAA+C;;;;;;;;;;;;;;;;;AAMhF"}}]
+}

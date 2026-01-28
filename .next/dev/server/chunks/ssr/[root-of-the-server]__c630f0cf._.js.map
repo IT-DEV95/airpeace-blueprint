@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 40, "column": 0}, "map": {"version":3,"sources":["file:///Users/admin/Desktop/air-peace-blueprint/src/pages/_document.tsx"],"sourcesContent":["import Document, { Html, Head, Main, NextScript } from \"next/document\";\n\nclass MyDocument extends Document {\n  render() {\n    return (\n      <Html lang=\"en\">\n        <Head>\n          <meta\n            name=\"description\"\n            content=\"Air Peace – Nigeria's largest airline. Book flights, manage bookings, check flight status, and explore destinations across Nigeria, Africa, and beyond.\"\n          />\n          <meta name=\"theme-color\" content=\"#8b1113\" />\n        </Head>\n        <body>\n          <Main />\n          <NextScript />\n        </body>\n      </Html>\n    );\n  }\n}\n\nexport default MyDocument;\n\n"],"names":[],"mappings":";;;;;AAAA;;;AAEA,MAAM,mBAAmB,4KAAQ;IAC/B,SAAS;QACP,qBACE,qKAAC,yKAAI;YAAC,MAAK;;8BACT,qKAAC,yKAAI;;sCACH,qKAAC;4BACC,MAAK;4BACL,SAAQ;;;;;;sCAEV,qKAAC;4BAAK,MAAK;4BAAc,SAAQ;;;;;;;;;;;;8BAEnC,qKAAC;;sCACC,qKAAC,yKAAI;;;;;sCACL,qKAAC,+KAAU;;;;;;;;;;;;;;;;;IAInB;AACF;uCAEe"}}]
+}
